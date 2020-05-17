@@ -11,11 +11,11 @@
         v-model="searchForm.keyword"
         placeholder="search keyword"
         prefix-icon="el-icon-search"
-        @keyup.enter.native="search('search')"
+        @keyup.enter.native="search('searchForm')"
       />
     </el-form-item>
     <el-form-item>
-      <el-button @click="search('search')">search</el-button>
+      <el-button @click="search('searchForm')">search</el-button>
     </el-form-item>
   </el-form>
 </template>
@@ -30,8 +30,8 @@ export default {
       // バリデーション
       rules: {
         keyword: [
-          { required: true, massage: 'Plase input the key', trigger: 'blur' },
           // 未入力はエラー
+          { required: true, massage: 'Plase input the key', trigger: 'blur' },
           // 空白のみはエラー
           { whitespase: true, massage: 'Plase input the key', trigger: 'blur' }
         ]
@@ -41,6 +41,7 @@ export default {
   methods: {
     // searchボタンをおしたら呼び出されるメドッド
     search(form) {
+      console.log(this.$refs)
       this.$refs[form].validate((valid) => {
         if (!valid) {
           return false
